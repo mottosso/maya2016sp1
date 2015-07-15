@@ -1,2 +1,2 @@
-# maya2016sp1
-Dockerfile for Maya 2016 SP1 on CentOS 6
+# maya2016-centos
+Maya 2016 on CentOS 6
