@@ -8,15 +8,23 @@ RUN wget http://download.autodesk.com/us/support/files/maya_2016_service_pack_1/
     mkdir /maya && tar -xvf maya.tgz -C /maya && \
     rm maya.tgz
  
-WORKDIR /maya
- 
 # Install Maya
-RUN rpm -Uvh *.rpm
+RUN rpm -Uvh /maya/Maya*.rpm && \
+    rm -r /maya
+
+# Make mayapy the default Python
+RUN rm -f /usr/bin/python && \
+    echo alias python=/usr/autodesk/maya/bin/mayapy >> ~/.bashrc
 
 # Setup environment
-ENV MAYA_LOCATION=/usr/autodesk/maya2016-x64/
+ENV MAYA_LOCATION=/usr/autodesk/maya/
 ENV PATH=$MAYA_LOCATION/bin:$PATH
- 
+
+RUN wget https://bootstrap.pypa.io/get-pip.py && \
+    mayapy get-pip.py
+
+RUN mayapy -m pip install \
+ nose
+
 # Cleanup
 WORKDIR /root
-RUN rm -r /maya
