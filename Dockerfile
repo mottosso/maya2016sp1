@@ -15,7 +15,7 @@ RUN rpm -Uvh /maya/Maya*.rpm && \
 # Make mayapy the default Python
 RUN rm -f /usr/bin/python && \
     echo alias python=/usr/autodesk/maya/bin/mayapy >> ~/.bashrc && \
-    echo alias pip="mayapy -m pip"
+    echo alias pip="mayapy -m pip" >> ~/.bashrc
 
 # Setup environment
 ENV MAYA_LOCATION=/usr/autodesk/maya/
