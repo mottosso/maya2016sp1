@@ -21,7 +21,7 @@ RUN rm -f /usr/bin/python && \
 ENV MAYA_LOCATION=/usr/autodesk/maya/
 ENV PATH=$MAYA_LOCATION/bin:$PATH
 
-# Workaround for "Segmentation fault (core dumped)"
+# Workaround for bug
 # See https://forums.autodesk.com/t5/maya-general/render-crash-on-linux/m-p/5608552/highlight/true
 ENV MAYA_DISABLE_CIP=1
 
